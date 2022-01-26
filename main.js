@@ -27,7 +27,8 @@ function classificarImc(imc){
     return text;
 }
 
-function mostrarResultado(){    
+function mostrarResultado(){
+    
     const name = document.getElementById('nome').value;
     const height = document.getElementById('altura').value;
     const weight = document.getElementById('peso').value;
@@ -46,8 +47,12 @@ function mostrarResultado(){
     }
 }
 
-function updateTextInput(val) {
-    document.getElementById('altura').value=val; 
-  }
+var slider = document.getElementById("altura");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; 
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
 
 document.getElementById('calcular').addEventListener('click', mostrarResultado);
