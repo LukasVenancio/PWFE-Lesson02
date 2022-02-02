@@ -1,19 +1,17 @@
 'use strict';
 
-function validarCampos(name, height, weight){
-    return document.getElementById('formulario').reportValidity();
-}
+import{ iniciarRange } from "./input-range.js"
 
-function calcularImc(weight, height){
-    return weight / (height * height);
-}
+const validarCampos = () => document.getElementById('formulario').reportValidity();
 
-function classificarImc(imc){
+const calcularImc = (weight, height) => weight / (height * height);
+
+const classificarImc = (imc) => {
     let text;
     if( imc < 18.5){
         text = 'e você está abaixo do peso';
     }else if(imc < 25){
-        text = 'e você está com o peso ideal. Parabéns!'
+        text = 'e você está com o peso ideal. <span id="parabens">Parabéns!</span>'
     }else if(imc < 30){
         text = 'e você está levemente acima do peso.'
     }else if(imc < 35){
@@ -21,13 +19,13 @@ function classificarImc(imc){
     }else if(imc < 40){
         text = 'e você está com obesidade grau II.'
     }else{
-        text = 'e você está com obesidade grau III. Cuidado!'
+        text = 'e você está com obesidade grau III. <span id="cuidado">Cuidado!</span>'
     }
 
     return text;
 }
 
-function mostrarResultado(){
+const mostrarResultado = () => {
     
     const name = document.getElementById('nome').value;
     const height = document.getElementById('altura').value;
@@ -40,19 +38,14 @@ function mostrarResultado(){
 
         let text = classificarImc(imc);
         
-        result.textContent = `${name} seu IMC é: ${imc.toFixed(2)} ${text}`;
+        result.innerHTML = `${name} seu IMC é: ${imc.toFixed(2)} ${text}`;
         
     }else{
-        result.textContent = 'Preencha todos os campos!';
+        result.innerHTML = 'Preencha todos os campos!';
     }
 }
 
-var slider = document.getElementById("altura");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value; 
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-
 document.getElementById('calcular').addEventListener('click', mostrarResultado);
+
+iniciarRange('altura');
+iniciarRange('peso');

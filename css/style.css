@@ -51,6 +51,7 @@ form {
     align-items: center;
     width: 100%;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 button {
@@ -72,16 +73,11 @@ button {
     user-select: none;
 }
 
-.verde {
+#parabens {
     color: green;
 }
 
-.vermelho {
+#cuidado {
     color: red;
 }
 
-.input{
-    display: flex;
-    flex-direction: column;
-    
-}
